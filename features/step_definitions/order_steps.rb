@@ -19,12 +19,13 @@ When /^when I get the combinations$/ do
 end
 
 Then /^it should show me the options$/ do
-  @orders.should == [
-    'mixed fruit',
-    'french fries'
-  ]
+  message = "expected: count > 0\n" +
+            "     got: #{@orders}\n"
+  @orders.count.should be > 0, message
 end
 
 Then /^it should show me that nothing was found$/ do
-  @orders.should == []
+  message = "expected: count == 0\n" +
+            "     got: #{@orders}\n"
+  @orders.count.should eq(0), message
 end
