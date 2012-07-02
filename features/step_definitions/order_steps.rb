@@ -1,4 +1,4 @@
-Given /^a menu that adds up nicely$/ do
+Given /^a menu that sums up to the target price$/ do
   @target_price    = 4.90
   @menu = RestaurantOrders::Menu.new([
     ['mixed fruit',  2.15],
@@ -6,7 +6,7 @@ Given /^a menu that adds up nicely$/ do
   ])
 end
 
-Given /^a menu that does not add up nicely$/ do
+Given /^a menu that does not add up$/ do
   @target_price    =  3.00
   @menu = RestaurantOrders::Menu.new([
     ['mixed fruit',   2.15],
