@@ -38,6 +38,19 @@ module RestaurantOrders
         end
       end
 
+      context 'with no dishes adding up to the target price' do
+        let(:target_price) { 3.00 }
+        let(:menu) {
+          Menu.new({
+            'mixed fruit'  => 2.15,
+            'french fries' => 2.75
+          })
+        }
+        it 'shows only the first two dishes' do
+          menu.get_combinations(target_price).should == []
+        end
+      end
+
     end
   end
 end

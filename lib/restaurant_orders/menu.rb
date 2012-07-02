@@ -7,14 +7,15 @@ module RestaurantOrders
 
     def get_combinations(target_price)
       total = 0
-      @dishes.select { |name, price|
+      d = @dishes.select { |name, price|
         if total + price <= target_price
           total += price
           true
         else
           false
         end
-      }.keys
+      }
+      total == target_price ? d.keys : []
     end
 
   end
