@@ -1,17 +1,17 @@
 Given /^a menu that adds up nicely$/ do
-  @target_price    =  4.90
-  @menu = RestaurantOrders::Menu.new({
-    'mixed fruit'  => 2.15,
-    'french fries' => 2.75,
-  })
+  @target_price    = 4.90
+  @menu = RestaurantOrders::Menu.new([
+    ['mixed fruit',  2.15],
+    ['french fries', 2.75]
+  ])
 end
 
 Given /^a menu that does not add up nicely$/ do
-  @target_price   =  3.00
-  @menu = RestaurantOrders::Menu.new({
-    'mixed fruit'  => 2.15,
-    'french fries' => 2.75
-  })
+  @target_price    =  3.00
+  @menu = RestaurantOrders::Menu.new([
+    ['mixed fruit',   2.15],
+    ['french fries',  2.75]
+  ])
 end
 
 When /^when I get the combinations$/ do

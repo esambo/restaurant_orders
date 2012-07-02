@@ -6,12 +6,12 @@ module RestaurantOrders
     describe '#get_combinations' do
 
       context 'with dishes that add up to the target price' do
-        let(:target_price) {  4.90 }
+        let(:target_price) { 4.90 }
         let(:menu) {
-          Menu.new({
-            'mixed fruit'  => 2.15,
-            'french fries' => 2.75
-          })
+          Menu.new([
+            ['mixed fruit',  2.15],
+            ['french fries', 2.75]
+          ])
         }
         it 'shows all dishes' do
           menu.get_combinations(target_price).should == [
@@ -24,11 +24,11 @@ module RestaurantOrders
       context 'with first two dishes adding up to the target price' do
         let(:target_price) { 4.90 }
         let(:menu) {
-          Menu.new({
-            'mixed fruit'  => 2.15,
-            'french fries' => 2.75,
-            'side salad'   => 3.35
-          })
+          Menu.new([
+            ['mixed fruit',  2.15],
+            ['french fries', 2.75],
+            ['side salad',   3.35]
+          ])
         }
         it 'shows only the first two dishes' do
           menu.get_combinations(target_price).should == [
@@ -41,10 +41,10 @@ module RestaurantOrders
       context 'with no dishes adding up to the target price' do
         let(:target_price) { 3.00 }
         let(:menu) {
-          Menu.new({
-            'mixed fruit'  => 2.15,
-            'french fries' => 2.75
-          })
+          Menu.new([
+            ['mixed fruit',  2.15],
+            ['french fries', 2.75]
+          ])
         }
         it 'shows only the first two dishes' do
           menu.get_combinations(target_price).should == []
