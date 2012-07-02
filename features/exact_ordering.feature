@@ -12,3 +12,8 @@ Feature: Exact Ordering
     Given a menu that does not add up
     When when I get the combinations
     Then it should show me that nothing was found
+
+  Scenario: complex combination(s) exist
+    Given a menu with target price combinations
+    When when I get the combinations
+    Then it should show me the options

@@ -6,19 +6,29 @@ module RestaurantOrders
     end
 
     def get_combinations(target_price)
-      total = 0
-      d = @dishes.map { |dish|
-        name  = dish[0]
-        price = dish[1]
-        if total + price <= target_price
-          total += price
-          name
-        else
-          nil
-        end
+      c = []
+      @dishes.permutation.each { |dishes|
+        d = combination(dishes, target_price)
+        c << d if d
       }
-      total == target_price ? d.compact : []
+      c.map(&:sort).uniq.flatten
     end
+
+    private
+
+      def combination(dishes, target_price)
+        total = 0
+        names = []
+        dishes.each { |dish|
+          name  = dish[0]
+          price = dish[1]
+          if total + price <= target_price
+            total += price
+            names << name
+          end
+        }
+        names if total == target_price
+      end
 
   end
 end

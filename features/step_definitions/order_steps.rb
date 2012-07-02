@@ -6,6 +6,18 @@ Given /^a menu that sums up to the target price$/ do
   ])
 end
 
+Given /^a menu with target price combinations$/ do
+  @target_price         = 15.05
+  @menu = RestaurantOrders::Menu.new([
+    ['mixed fruit',       2.15],
+    ['french fries',      2.75],
+    ['side salad',        3.35],
+    ['hot wings',         3.55],
+    ['mozzarella sticks', 4.20],
+    ['sampler plate',     5.80]
+  ])
+end
+
 Given /^a menu that does not add up$/ do
   @target_price    =  3.00
   @menu = RestaurantOrders::Menu.new([

@@ -17,7 +17,7 @@ module RestaurantOrders
           menu.get_combinations(target_price).should == [
             'mixed fruit',
             'french fries'
-          ]
+          ].sort
         end
       end
 
@@ -34,7 +34,7 @@ module RestaurantOrders
           menu.get_combinations(target_price).should == [
             'mixed fruit',
             'french fries'
-          ]
+          ].sort
         end
       end
 
@@ -48,6 +48,23 @@ module RestaurantOrders
         }
         it 'shows only the first two dishes' do
           menu.get_combinations(target_price).should == []
+        end
+      end
+
+      context 'with last two dishes adding up to the target price' do
+        let(:target_price) { 6.10 }
+        let(:menu) {
+          Menu.new([
+            ['mixed fruit',  2.15],
+            ['french fries', 2.75],
+            ['side salad',   3.35]
+          ])
+        }
+        it 'excludes the first dish' do
+          menu.get_combinations(target_price).should == [
+            'french fries',
+            'side salad'
+          ].sort
         end
       end
 
