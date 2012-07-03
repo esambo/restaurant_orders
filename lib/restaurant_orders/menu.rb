@@ -8,7 +8,7 @@ module RestaurantOrders
     def get_combinations(target_price)
       c = []
       dish_perms = @dishes.permutation
-      dish_perms.each do |dishes|
+      dups_until(dish_perms, target_price).each do |dishes|
         d = select_until(dishes, target_price)
         c << d if d
       end
@@ -16,6 +16,19 @@ module RestaurantOrders
     end
 
     private
+
+      def dups_until(dish_perms, target_price)
+        dish_perms.map { |dishes|
+          dups = []
+          dishes.each do |d|
+            price = d[1]
+            (target_price / price).floor.times do |_|
+              dups << d
+            end
+          end
+          dups
+        }
+      end
 
       def select_until(dishes, target_price)
         total = 0

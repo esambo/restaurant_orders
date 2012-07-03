@@ -62,6 +62,45 @@ module RestaurantOrders
         end
       end
 
+      context 'with two of the first dish adding up to the target price' do
+        let(:target_price) { 4.30 }
+        let(:dishes)       {[
+            ['mixed fruit',  2.15]
+        ]}
+        it 'includes the first dish twice' do
+          menu.get_combinations(target_price).should == [
+            'mixed fruit',
+            'mixed fruit'
+          ].sort
+        end
+      end
+
     end
+
+    describe '(private) #dups_until' do
+      context 'with 3 different dishes' do
+        let(:dishes)       {[
+            ['a',  1],
+            ['b',  3],
+            ['c',  5]
+        ]}
+        let(:dish_perms)   {[
+          dishes,
+          [['d', 3.5]]
+        ]}
+        let(:target_price) { 7 }
+        it 'duplicates until target price' do
+          menu.send(:dups_until, dish_perms, target_price).to_a.should == [
+            [ ['a', 1], ['a', 1], ['a', 1], ['a', 1], ['a', 1], ['a', 1], ['a', 1],
+              ['b', 3], ['b', 3],
+              ['c', 5]
+            ],
+            [ ['d', 3.5], ['d', 3.5]
+            ]
+          ]
+        end
+      end
+    end
+
   end
 end
