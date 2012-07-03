@@ -7,10 +7,11 @@ module RestaurantOrders
 
     def get_combinations(target_price)
       c = []
-      @dishes.permutation.each { |dishes|
+      dish_perms = @dishes.permutation
+      dish_perms.each do |dishes|
         d = select_until(dishes, target_price)
         c << d if d
-      }
+      end
       c.map(&:sort).uniq.flatten
     end
 
@@ -19,14 +20,14 @@ module RestaurantOrders
       def select_until(dishes, target_price)
         total = 0
         names = []
-        dishes.each { |dish|
+        dishes.each do |dish|
           name  = dish[0]
           price = dish[1]
           if total + price <= target_price
             total += price
             names << name
           end
-        }
+        end
         names if total == target_price
       end
 
