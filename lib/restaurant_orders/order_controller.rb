@@ -8,7 +8,8 @@ module RestaurantOrders
     end
 
     def call
-      process
+      options = process
+      render(options)
     end
 
       def process
@@ -17,6 +18,12 @@ module RestaurantOrders
         dishes       = parsed
         @menu        = new_menu(dishes)
         @menu.get_combinations(target_price)
+      end
+
+      def render(options)
+        options.each do |dishes|
+          @output.puts dishes
+        end
       end
 
         def new_menu(dishes)

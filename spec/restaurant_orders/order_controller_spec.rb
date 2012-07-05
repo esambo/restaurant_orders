@@ -61,5 +61,22 @@ module RestaurantOrders
       end
     end
 
+    describe '#render' do
+      context 'with options of dishes' do
+        let(:options) {[
+          'mixed fruit',
+          'french fries'
+        ]}
+        before :each do
+          input.stub(:each_line) { [] }
+        end
+        it 'displays dishes' do
+          output.should_receive(:puts).with('mixed fruit')
+          output.should_receive(:puts).with('french fries')
+          controller.render(options)
+        end
+      end
+    end
+
   end
 end

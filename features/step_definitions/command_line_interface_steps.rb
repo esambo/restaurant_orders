@@ -32,5 +32,8 @@ When /^I start a program$/ do
 end
 
 Then /^the summary should include "(.*?)"$/ do |output_line|
-  @output_index = validate_incrementally(output, output_line, @output_index)
+  output_items   = output_line.split(', ')
+  output_items.each do |dish|
+    @output_index = validate_incrementally(output, dish, @output_index)
+  end
 end
