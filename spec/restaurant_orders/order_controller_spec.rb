@@ -62,6 +62,7 @@ module RestaurantOrders
     end
 
     describe '#render' do
+
       context 'with options of dishes' do
         let(:options) {[
           'mixed fruit',
@@ -76,6 +77,18 @@ module RestaurantOrders
           controller.render(options)
         end
       end
+
+      context 'with no dishes' do
+        let(:options) {[]}
+        before :each do
+          input.stub(:each_line) { [] }
+        end
+        it 'displays dishes' do
+          output.should_receive(:puts).with('No combination of dishes!')
+          controller.render(options)
+        end
+      end
+
     end
 
   end

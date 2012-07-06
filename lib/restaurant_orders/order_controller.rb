@@ -21,6 +21,7 @@ module RestaurantOrders
       end
 
       def render(options)
+        @output.puts "No combination of dishes!" if options.count == 0
         options.each do |dishes|
           @output.puts dishes
         end

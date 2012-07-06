@@ -15,5 +15,14 @@ Feature: Command Line Interface
       sampler plate,$5.80
       """
     When I start a program
-    Then the summary should include "hot wings, hot wings, mixed fruit, sampler plate"
     Then the summary should include "mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit"
+
+  Scenario: no combination of dishes
+    Given the input:
+      """
+      $3.00
+      mixed fruit,$2.15
+      french fries,$2.75
+      """
+    When I start a program
+    Then the summary should include "No combination of dishes!"
