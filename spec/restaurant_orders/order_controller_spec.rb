@@ -72,8 +72,7 @@ module RestaurantOrders
           input.stub(:each_line) { [] }
         end
         it 'displays dishes' do
-          output.should_receive(:puts).with('mixed fruit')
-          output.should_receive(:puts).with('french fries')
+          output.should_receive(:puts).with('mixed fruit, french fries')
           controller.render(options)
         end
       end

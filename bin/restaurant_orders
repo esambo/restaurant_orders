@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+
+$: << File.expand_path(File.join(File.dirname(__FILE__), %w(.. lib)))
+require 'restaurant_orders'
+
+input  = ARGV.first
+input  = File.read(ARGV.first) if File.exist?(ARGV.first)
+output = STDOUT
+
+controller = RestaurantOrders::OrderController.new(input, output)
+controller.call
