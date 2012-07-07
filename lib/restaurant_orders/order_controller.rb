@@ -24,7 +24,9 @@ module RestaurantOrders
         if options.count == 0
           @output.puts "No combination of dishes!"
         else
-          @output.puts options.join(', ')
+          options.each do |o|
+            @output.puts o.join(', ')
+          end
         end
       end
 

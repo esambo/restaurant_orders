@@ -3,6 +3,7 @@ Feature: Command Line Interface
   As a restaurant guest
   I want use the program on the command line
 
+  @slow
   Scenario: show options
     Given the input:
       """
@@ -16,6 +17,7 @@ Feature: Command Line Interface
       """
     When I start a program
     Then the summary should include "mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit"
+    Then the summary should include "hot wings, hot wings, mixed fruit, sampler plate"
 
   Scenario: no combination of dishes
     Given the input:

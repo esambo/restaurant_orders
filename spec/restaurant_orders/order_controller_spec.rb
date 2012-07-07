@@ -65,8 +65,7 @@ module RestaurantOrders
 
       context 'with options of dishes' do
         let(:options) {[
-          'mixed fruit',
-          'french fries'
+          ['mixed fruit', 'french fries']
         ]}
         before :each do
           input.stub(:each_line) { [] }
